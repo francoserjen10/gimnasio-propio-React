@@ -4,7 +4,7 @@ import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.share
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function login() {
+export default function Login() {
 
     const router: AppRouterInstance = useRouter();
     const [formData, setFormData] = useState({ email: "", password: "" });
@@ -44,7 +44,7 @@ export default function login() {
                     onChange={handleChange} />
                 <button type="submit">Enviar</button>
             </form>
-            <p>¿Ya tenes cuenta?</p>
+            <p>¿No tenes cuenta?</p>
             <button onClick={() => router.push('/register')}>Registrate</button>
         </div>
     );
