@@ -2,26 +2,22 @@
 import { loginService } from "@/app/services/auth-services/login-service";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { loginSchema } from "@/app/schemas/login-schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 export default function Login() {
 
     const router: AppRouterInstance = useRouter();
-    const [formData, setFormData] = useState({ email: "", password: "" });
+    const { register, handleSubmit, formState: { errors }, reset } = useForm({
+        resolver: zodResolver(loginSchema),
+    });
 
-    //Manejar los cambios del formulario
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData({
-            ...formData,
-            [event.target.name]: event.target.value,
-        });
-    }
-
-    const handleSubmit = async (event: React.FormEvent) => {
-        event.preventDefault();
+    const onSubmit = async (data: z.infer<typeof loginSchema>) => {
         try {
-            const response = await loginService(formData.email, formData.password);
-            setFormData({ email: "", password: "" });
+            await loginService(data.email, data.password);
+            reset();
         } catch (error) {
             console.error("Error al hacer la petición:", error);
         }
@@ -29,19 +25,24 @@ export default function Login() {
 
     return (
         <div>
-            <h1>holaaa</h1><form onSubmit={handleSubmit}>
+            <h1>Inicio de Sesion</h1>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <input
+                    {...register("email")}
                     type="text"
                     name="email"
                     placeholder="email"
-                    value={formData.email}
-                    onChange={handleChange} />
+                />
+                {errors.email && <p>{errors.email.message}</p>}
+
                 <input
+                    {...register("password")}
                     type="password"
                     name="password"
                     placeholder="password"
-                    value={formData.password}
-                    onChange={handleChange} />
+                />
+                {errors.password && <p>{errors.password.message}</p>}
+
                 <button type="submit">Enviar</button>
             </form>
             <p>¿No tenes cuenta?</p>
