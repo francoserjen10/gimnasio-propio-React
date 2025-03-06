@@ -31,7 +31,6 @@ export default function Login() {
                 <input
                     {...register("email")}
                     type="text"
-                    name="email"
                     placeholder="email"
                 />
                 {errors.email && <p>{errors.email.message}</p>}
@@ -39,7 +38,6 @@ export default function Login() {
                 <input
                     {...register("password")}
                     type="password"
-                    name="password"
                     placeholder="password"
                 />
                 {errors.password && <p>{errors.password.message}</p>}
