@@ -17,6 +17,7 @@ export default function Login() {
     const onSubmit = async (data: z.infer<typeof loginSchema>) => {
         try {
             await loginService(data.email, data.password);
+            alert('Inicio de sesion exitoso');
             reset();
         } catch (error) {
             console.error("Error al hacer la petición:", error);
