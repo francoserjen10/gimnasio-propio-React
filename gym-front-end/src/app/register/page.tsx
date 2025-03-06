@@ -17,6 +17,7 @@ export default function register() {
     const onSubmit = async (data: z.infer<typeof registrationSchema>) => {
         try {
             await registerService(data.name, data.lastName, data.phoneNumber, data.birthDate, Number(data.dni), data.email, data.password, data.emergencyContact, data.direction);
+            alert(`Usuario ${data.name} registrado con éxito`);
             reset();
         } catch (error) {
             console.error("Error al hacer la petición:", error);
