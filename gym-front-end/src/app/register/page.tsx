@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
-export default function register() {
+export default function Register() {
 
     const router: AppRouterInstance = useRouter();
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
@@ -16,7 +16,11 @@ export default function register() {
 
     const onSubmit = async (data: z.infer<typeof registrationSchema>) => {
         try {
-            await registerService(data.name, data.lastName, data.phoneNumber, data.birthDate, Number(data.dni), data.email, data.password, data.emergencyContact, data.direction);
+            const formattedDate = {
+                ...data,
+                dni: Number(data.dni),
+            }
+            await registerService(formattedDate.name, formattedDate.lastName, formattedDate.phoneNumber, formattedDate.birthDate, formattedDate.dni, formattedDate.email, formattedDate.password, formattedDate.emergencyContact, formattedDate.direction);
             alert(`Usuario ${data.name} registrado con éxito`);
             reset();
             router.push('/login');
@@ -55,7 +59,7 @@ export default function register() {
 
                 <input
                     {...register("birthDate")}
-                    type="Date"
+                    type="date"
                     name="birthDate"
                     placeholder="Fecha de nac"
                 />
