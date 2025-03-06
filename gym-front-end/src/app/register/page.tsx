@@ -1,45 +1,23 @@
 'use client'
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { registerService } from "../services/auth-services/register-service";
+import { registrationSchema } from "../schemas/registrarion-schema";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 
 export default function register() {
 
     const router: AppRouterInstance = useRouter();
-    const [formData, setFormData] = useState({ name: "", lastName: "", phoneNumber: "", birthDate: "", dni: "", email: "", password: "", emergencyContact: "", direction: "" });
+    const { register, handleSubmit, formState: { errors }, reset } = useForm({
+        resolver: zodResolver(registrationSchema),
+    });
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData({
-            ...formData,
-            [event.target.name]: event.target.value,
-        });
-    }
-
-    const handleSubmit = async (event: React.FormEvent) => {
-        event.preventDefault();
+    const onSubmit = async (data: z.infer<typeof registrationSchema>) => {
         try {
-            const response = await registerService(
-                formData.name,
-                formData.lastName,
-                formData.phoneNumber,
-                new Date(formData.birthDate),
-                Number(formData.dni),
-                formData.email,
-                formData.password,
-                formData.emergencyContact,
-                formData.direction);
-            setFormData({
-                name: "",
-                lastName: "",
-                phoneNumber: "",
-                birthDate: "",
-                dni: "",
-                email: "",
-                password: "",
-                emergencyContact: "",
-                direction: ""
-            });
+            await registerService(data.name, data.lastName, data.phoneNumber, data.birthDate, Number(data.dni), data.email, data.password, data.emergencyContact, data.direction);
+            reset();
         } catch (error) {
             console.error("Error al hacer la petición:", error);
         }
@@ -48,68 +26,79 @@ export default function register() {
     return (
         <div>
             <h1>Registro</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <input
+                    {...register("name")}
                     type="text"
                     name="name"
                     placeholder="Nombre"
-                    value={formData.name}
-                    onChange={handleChange}
                 />
+                {errors.name && <p>{errors.name.message}</p>}
+
                 <input
+                    {...register("lastName")}
                     type="text"
                     name="lastName"
                     placeholder="Apellido"
-                    value={formData.lastName}
-                    onChange={handleChange}
                 />
+                {errors.lastName && <p>{errors.lastName.message}</p>}
+
                 <input
+                    {...register("phoneNumber")}
                     type="text"
                     name="phoneNumber"
                     placeholder="Numero de telefono"
-                    value={formData.phoneNumber}
-                    onChange={handleChange}
                 />
+                {errors.phoneNumber && <p>{errors.phoneNumber.message}</p>}
+
                 <input
+                    {...register("birthDate")}
                     type="Date"
                     name="birthDate"
                     placeholder="Fecha de nac"
-                    value={formData.birthDate}
-                    onChange={handleChange}
                 />
+                {errors.birthDate && <p>{errors.birthDate.message}</p>}
+
                 <input
-                    type="text"
+                    {...register("dni")}
+                    type="number"
                     name="dni"
                     placeholder="D.N.I"
-                    value={formData.dni}
-                    onChange={handleChange}
                 />
+                {errors.dni && <p>{errors.dni.message}</p>}
+
                 <input
+                    {...register("email")}
                     type="text"
                     name="email"
                     placeholder="email"
-                    value={formData.email}
-                    onChange={handleChange} />
+                />
+                {errors.email && <p>{errors.email.message}</p>}
+
                 <input
+                    {...register("password")}
                     type="password"
                     name="password"
                     placeholder="password"
-                    value={formData.password}
-                    onChange={handleChange} />
+                />
+                {errors.password && <p>{errors.password.message}</p>}
+
                 <input
+                    {...register("emergencyContact")}
                     type="text"
                     name="emergencyContact"
                     placeholder="Telefono de emergencia"
-                    value={formData.emergencyContact}
-                    onChange={handleChange}
                 />
+                {errors.emergencyContact && <p>{errors.emergencyContact.message}</p>}
+
                 <input
+                    {...register("direction")}
                     type="text"
                     name="direction"
                     placeholder="Direccion"
-                    value={formData.direction}
-                    onChange={handleChange}
                 />
+                {errors.direction && <p>{errors.direction.message}</p>}
+
                 <button type="submit">Enviar</button>
             </form>
             <p>¿Ya tenes cuenta?</p>
