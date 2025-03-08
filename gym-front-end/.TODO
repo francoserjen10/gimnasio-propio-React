@@ -1,0 +1,77 @@
+Servicios:
+    ✔ conexion con back-end @done(25-02-14 15:26)
+    ✔ conexion con endpoint de login @done(25-02-14 15:26)
+    - conexion con endpoint de registro
+
+Pages:
+    ✔ Login: 
+        ✔ Poner titulo Inicio de sesion @done(25-02-28 21:13)
+        ✔ Input email @done(25-02-28 21:13)
+        ✔ Que email sea requerido @done(25-02-28 21:13)
+        ✔ Que email sea un email @done(25-02-28 21:13)
+        ✔ Input password @done(25-02-28 21:13)
+        ✔ Que password sea requerido @done(25-02-28 21:13)
+        - Que password exista en la base de datos y si no existe que muestre mensaje de error tambien
+        - Button login "Iniciar sesión"
+        ✔ Button para redireccionar a registro @done(25-02-28 21:14)
+        - Redireccionar el usuario CLIENTE  a su pagina
+        - Redireccionar el usuario ADMIN a su pagina
+     
+    - Registro:
+        ✔ Poner titulo Registro @done(25-02-28 21:14)
+        ✔ Input nombre @done(25-03-06 17:12)
+        ✔ Que nombre sea requerido @done(25-03-06 17:12)
+        ✔ Input Apellido @done(25-03-06 17:12)
+        ✔ Que Apellido sea requerido @done(25-03-06 17:12)
+        ✔ Input numero de telefono @done(25-03-06 17:12)
+        ✔ Que numero de telefono sea requerido @done(25-03-06 17:12)
+        ✔ Input Fecha de nacimiento @done(25-03-06 17:12)
+        ✔ Que Fecha de nacimiento sea requerido @done(25-03-06 17:12)
+        ✔ Input dni @done(25-03-06 17:12)
+        ✔ Que dni sea requerido @done(25-03-06 17:12)
+        ✔ Input email @done(25-03-06 17:12)
+        ✔ Que email sea requerido @done(25-03-06 17:12)
+        ✔ Que email sea un email @done(25-03-06 17:12)
+        ✔ Input password @done(25-03-06 17:12)
+        ✔ Que password sea requerido @done(25-03-06 17:12)
+        ✔ Que password tenga al menos 6 caracteres @done(25-03-06 17:12)
+        ✔ Input telefono de emergencia @done(25-03-06 17:12)
+        ✔ Que telefono de emergencia sea requerido @done(25-03-06 17:12)
+        ✔ Input direccion @done(25-03-06 17:12)
+        ✔ Que direccion sea requerido @done(25-03-06 17:12)
+        - Button registro "Registrarse"
+        ✔ Button para redireccionar a login @done(25-02-28 21:14)
+
+Componentes:
+    - Agregar interfaces
+    ✔ Los componentes deben empezar con MAYUSCULA @done(25-03-06 16:57)
+    ✔ Eliminar en los formularios la prop 'name' @done(25-03-06 17:01)
+
+Estructura:
+- /src
+✔ │── /app @done(25-03-08 15:28)
+✔ │   │── /login @done(25-03-08 15:28)
+✔ │   │   ├── page.tsx @done(25-03-08 15:28)
+✔ │   │── /register @done(25-03-08 15:28)
+✔ │   │   ├── page.tsx @done(25-03-08 15:28)
+✔ │   │── globals.css @done(25-03-08 15:34)
+✔ │   |── layout.tsx @done(25-03-08 15:34)
+✔ │   │── page.module.css @done(25-03-08 15:34)
+✔ │   |── page.tsx @done(25-03-08 15:34)
+- │── /components
+- │   │── /layout
+- │   │   ├── Layout.tsx
+✔ │── /services @done(25-03-08 14:48)
+✔ │   │── /db @done(25-03-08 14:48)
+✔ │   │   ├── axios.ts @done(25-03-08 14:48)
+✔ │   │── /auth @done(25-03-08 14:48)
+✔ │   │   ├── login-service.tsx @done(25-03-08 14:48)
+✔ │   │   ├── register-service.tsx @done(25-03-08 14:48)
+✔ │── /utils @done(25-03-08 14:58)
+✔ │   │── /validation @done(25-03-08 14:58)
+✔ │   │   ├── login-schema.ts @done(25-03-08 14:58)
+✔ │   │   ├── registration-schema.ts @done(25-03-08 14:58)
+
+Conceptos:
+    - Layout vs Page
+    - .tsx vs .js
