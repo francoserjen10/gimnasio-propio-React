@@ -1,4 +1,4 @@
-import axiosInstance from "../../conexion-db/axios";
+import axiosInstance from "../db/axios";
 import { isAxiosError } from "axios";
 
 export const loginService = async (email: string, password: string) => {

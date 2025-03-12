@@ -1,8 +1,8 @@
 'use client'
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { useRouter } from "next/navigation";
-import { registerService } from "../services/auth-services/register-service";
-import { registrationSchema } from "../schemas/registrarion-schema";
+import { registerService } from "@/services/auth/register-service";
+import { registrationSchema } from "../../utils/validation/registrarion-schema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
