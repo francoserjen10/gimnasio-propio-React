@@ -1,7 +1,7 @@
 Servicios:
     ✔ conexion con back-end @done(25-02-14 15:26)
     ✔ conexion con endpoint de login @done(25-02-14 15:26)
-    - conexion con endpoint de registro
+    ✔ conexion con endpoint de registro @done(25-03-12 11:44)
 
 Pages:
     ✔ Login: 
