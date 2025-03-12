@@ -6,6 +6,7 @@ import { registrationSchema } from "../../utils/validation/registrarion-schema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { IUser } from "@/interfaces/user-interface";
 
 export default function Register() {
 
@@ -16,7 +17,7 @@ export default function Register() {
 
     const onSubmit = async (data: z.infer<typeof registrationSchema>) => {
         try {
-            const formattedDate = {
+            const formattedDate: IUser = {
                 ...data,
                 dni: Number(data.dni),
             }

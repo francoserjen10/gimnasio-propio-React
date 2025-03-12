@@ -1,7 +1,8 @@
+import { IUser } from "@/interfaces/user-interface";
 import axiosInstance from "../db/axios";
 import { isAxiosError } from "axios";
 
-export const registerService = async (name: string, lastName: string, phoneNumber: string, birthDate: Date, dni: number, email: string, password: string, emergencyContact: string, direction: string) => {
+export const registerService = async (name: string, lastName: string, phoneNumber: string, birthDate: Date, dni: number, email: string, password: string, emergencyContact: string, direction: string): Promise<IUser> => {
     try {
         const response = await axiosInstance.post("/register/", { name, lastName, phoneNumber, birthDate, dni, email, password, emergencyContact, direction }, { withCredentials: true, });
         return response.data;
