@@ -7,9 +7,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useState } from "react";
+import { useUser } from "@/context/user-context";
 
 export default function Login() {
 
+    const { setUser } = useUser();
     const router: AppRouterInstance = useRouter();
     const [loginError, setLoginError] = useState<string | null>(null);
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
@@ -18,7 +20,8 @@ export default function Login() {
 
     const onSubmit = async (data: z.infer<typeof loginSchema>) => {
         try {
-            await loginService(data.email, data.password);
+            const response = await loginService(data.email, data.password);
+            setUser(response.user);
             alert('Inicio de sesion exitoso');
             reset();
             setLoginError(null);
@@ -30,7 +33,7 @@ export default function Login() {
                 setLoginError("Se ha producido un error");
             }
         }
-    }
+    };
 
     return (
         <div>

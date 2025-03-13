@@ -15,3 +15,18 @@ export const loginService = async (email: string, password: string) => {
         }
     }
 };
+
+export const getUserService = async () => {
+    try {
+        const response = await axiosInstance.get("/login/access/user", { withCredentials: true, });
+        return response.data.user;
+    } catch (error) {
+        if (isAxiosError(error)) {
+            console.error("Error en getUserService:", error.response?.data?.message || "Error desconocido en la autenticación");
+            throw new Error(error.response?.data?.message || "Error en la autenticación");
+        } else {
+            console.error("Error inesperado:", error);
+            throw new Error("Error inesperado en el servicio de login");
+        }
+    }
+};
