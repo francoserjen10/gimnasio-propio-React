@@ -12,3 +12,5 @@ export interface IUser {
     emergencyContact: string;
     direction: string;
 }
+
+export type IUserResponse = Omit<IUser, 'password' | 'urlImage'>;

@@ -6,7 +6,7 @@ import { registrationSchema } from "../../utils/validation/registrarion-schema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { IUser } from "@/interfaces/user-interface";
+import { IUser } from "@/interfaces/user";
 
 export default function Register() {
 
