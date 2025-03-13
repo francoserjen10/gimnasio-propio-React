@@ -23,6 +23,7 @@ export default function Login() {
             const response = await loginService(data.email, data.password);
             setUser(response.user);
             alert('Inicio de sesion exitoso');
+            router.push('/dashboard');
             reset();
             setLoginError(null);
         } catch (error) {
