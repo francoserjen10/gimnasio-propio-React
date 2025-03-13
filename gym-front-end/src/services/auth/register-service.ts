@@ -1,4 +1,4 @@
-import { IUser } from "@/interfaces/user-interface";
+import { IUser } from "@/interfaces/user";
 import axiosInstance from "../db/axios";
 import { isAxiosError } from "axios";
 
