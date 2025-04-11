@@ -6,12 +6,12 @@ import { loginSchema } from "@/utils/validation/login-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useUser } from "@/context/user-context";
 
 export default function Login() {
 
-    const { setUser } = useUser();
+    const { user, setUser, isLoading } = useUser();
     const router: AppRouterInstance = useRouter();
     const [loginError, setLoginError] = useState<string | null>(null);
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
@@ -23,7 +23,6 @@ export default function Login() {
             const response = await loginService(data.email, data.password);
             setUser(response.user);
             alert('Inicio de sesion exitoso');
-            router.push('/dashboard');
             reset();
             setLoginError(null);
         } catch (error) {
@@ -35,6 +34,16 @@ export default function Login() {
             }
         }
     };
+
+    useEffect(() => {
+        if (!isLoading && user) {
+            if (user.rolId === 1) {
+                router.push("/admin");
+            } else if (user.rolId === 2) {
+                router.push("/client");
+            }
+        }
+    }, [user, isLoading, router]);
 
     return (
         <div>
