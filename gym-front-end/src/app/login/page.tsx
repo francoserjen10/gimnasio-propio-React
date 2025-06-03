@@ -46,60 +46,48 @@ export default function Login() {
     }, [user, isLoading, router]);
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">
-            <div className="w-full max-w-md p-8 space-y-6 bg-white dark:bg-gray-800 rounded-xl shadow-md">
-                <h1 className="text-2xl font-bold text-center text-gray-800 dark:text-white">Inicio de Sesión</h1>
+        <div className="min-h-screen flex items-center justify-center bg-black px-4">
+            <div className="w-full max-w-md bg-[#111] rounded-2xl shadow-2xl p-10 text-white">
+                <h1 className="text-4xl font-extrabold text-center text-lime-400 mb-8 uppercase tracking-wider">Iniciar Sesión</h1>
 
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
                         <input
                             {...register("email")}
                             type="email"
-                            className="w-full mt-1 px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-300 dark:bg-gray-700 dark:text-white dark:border-gray-600"
-                            placeholder="tucorreo@email.com"
+                            placeholder="Correo electrónico"
+                            className="w-full bg-[#222] text-white p-3 rounded-md border border-[#333] focus:outline-none focus:ring-2 focus:ring-lime-400"
                         />
-                        {errors.email && (
-                            <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
-                        )}
+                        {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email.message}</p>}
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Contraseña</label>
                         <input
                             {...register("password")}
                             type="password"
-                            className="w-full mt-1 px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-300 dark:bg-gray-700 dark:text-white dark:border-gray-600"
-                            placeholder="********"
+                            placeholder="Contraseña"
+                            className="w-full bg-[#222] text-white p-3 rounded-md border border-[#333] focus:outline-none focus:ring-2 focus:ring-lime-400"
                         />
-                        {errors.password && (
-                            <p className="mt-1 text-sm text-red-600">{errors.password.message}</p>
-                        )}
+                        {errors.password && <p className="text-red-400 text-sm mt-1">{errors.password.message}</p>}
                     </div>
-
-                    {loginError && (
-                        <p className="text-red-600 text-sm text-center">{loginError}</p>
-                    )}
 
                     <button
                         type="submit"
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md transition duration-200"
+                        className="w-full bg-lime-400 text-black font-bold py-3 rounded-md hover:bg-lime-500 transition duration-300 uppercase tracking-wide"
                     >
-                        Iniciar Sesión
+                        Ingresar
                     </button>
                 </form>
 
-                <div className="text-center">
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
-                        ¿No tenés cuenta?{" "}
-                        <button
-                            onClick={() => router.push('/register')}
-                            className="text-blue-600 hover:underline"
-                        >
-                            Registrate
-                        </button>
-                    </p>
-                </div>
+                <p className="text-center mt-8 text-sm text-gray-400">
+                    ¿No tenés cuenta?
+                    <button
+                        onClick={() => router.push('/register')}
+                        className="ml-2 text-lime-400 hover:underline"
+                    >
+                        Registrarse
+                    </button>
+                </p>
             </div>
         </div>
     );
