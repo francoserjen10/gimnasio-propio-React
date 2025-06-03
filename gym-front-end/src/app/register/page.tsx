@@ -31,85 +31,52 @@ export default function Register() {
     }
 
     return (
-        <div>
-            <h1>Registro</h1>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <input
-                    {...register("name")}
-                    type="text"
-                    name="name"
-                    placeholder="Nombre"
-                />
-                {errors.name && <p>{errors.name.message}</p>}
+        <div className="min-h-screen flex items-center justify-center bg-black px-4">
+            <div className="w-full max-w-2xl bg-[#111] rounded-2xl shadow-2xl p-10 text-white">
+                <h1 className="text-4xl font-extrabold text-center text-lime-400 mb-8 uppercase tracking-wider">Registro Gym</h1>
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+                    {[
+                        { name: "name", type: "text", placeholder: "Nombre" },
+                        { name: "lastName", type: "text", placeholder: "Apellido" },
+                        { name: "phoneNumber", type: "text", placeholder: "Teléfono" },
+                        { name: "birthDate", type: "date", placeholder: "Fecha de nacimiento" },
+                        { name: "dni", type: "number", placeholder: "D.N.I" },
+                        { name: "email", type: "email", placeholder: "Correo electrónico" },
+                        { name: "password", type: "password", placeholder: "Contraseña" },
+                        { name: "emergencyContact", type: "text", placeholder: "Contacto de emergencia" },
+                        { name: "direction", type: "text", placeholder: "Dirección" }
+                    ].map((field, i) => (
+                        <div key={i}>
+                            <input
+                                {...register(field.name as any)}
+                                type={field.type}
+                                placeholder={field.placeholder}
+                                className="w-full bg-[#222] text-white p-3 rounded-md border border-[#333] focus:outline-none focus:ring-2 focus:ring-lime-400"
+                            />
+                            {errors[field.name as keyof typeof errors] && (
+                                <p className="text-red-400 text-sm mt-1">{errors[field.name as keyof typeof errors]?.message as string}</p>
+                            )}
+                        </div>
+                    ))}
 
-                <input
-                    {...register("lastName")}
-                    type="text"
-                    name="lastName"
-                    placeholder="Apellido"
-                />
-                {errors.lastName && <p>{errors.lastName.message}</p>}
+                    <button
+                        type="submit"
+                        className="w-full bg-lime-400 text-black font-bold py-3 rounded-md hover:bg-lime-500 transition duration-300 uppercase tracking-wide"
+                    >
+                        Crear cuenta
+                    </button>
+                </form>
 
-                <input
-                    {...register("phoneNumber")}
-                    type="text"
-                    name="phoneNumber"
-                    placeholder="Numero de telefono"
-                />
-                {errors.phoneNumber && <p>{errors.phoneNumber.message}</p>}
-
-                <input
-                    {...register("birthDate")}
-                    type="date"
-                    name="birthDate"
-                    placeholder="Fecha de nac"
-                />
-                {errors.birthDate && <p>{errors.birthDate.message}</p>}
-
-                <input
-                    {...register("dni")}
-                    type="number"
-                    name="dni"
-                    placeholder="D.N.I"
-                />
-                {errors.dni && <p>{errors.dni.message}</p>}
-
-                <input
-                    {...register("email")}
-                    type="text"
-                    name="email"
-                    placeholder="email"
-                />
-                {errors.email && <p>{errors.email.message}</p>}
-
-                <input
-                    {...register("password")}
-                    type="password"
-                    name="password"
-                    placeholder="password"
-                />
-                {errors.password && <p>{errors.password.message}</p>}
-
-                <input
-                    {...register("emergencyContact")}
-                    type="text"
-                    name="emergencyContact"
-                    placeholder="Telefono de emergencia"
-                />
-                {errors.emergencyContact && <p>{errors.emergencyContact.message}</p>}
-
-                <input
-                    {...register("direction")}
-                    type="text"
-                    name="direction"
-                    placeholder="Direccion"
-                />
-                {errors.direction && <p>{errors.direction.message}</p>}
-
-                <button type="submit">Enviar</button>
-            </form>
-            <p>¿Ya tenes cuenta?</p>
-            <button onClick={() => router.push('/login')}>Inicio de sesion</button>
+                <p className="text-center mt-8 text-sm text-gray-400">
+                    ¿Ya tenés cuenta?
+                    <button
+                        onClick={() => router.push('/login')}
+                        className="ml-2 text-lime-400 hover:underline"
+                    >
+                        Iniciar sesión
+                    </button>
+                </p>
+            </div>
         </div>
     );
 }
