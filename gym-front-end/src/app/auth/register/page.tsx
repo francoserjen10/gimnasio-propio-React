@@ -70,7 +70,7 @@ export default function Register() {
                 <p className="text-center mt-8 text-sm text-gray-400">
                     ¿Ya tenés cuenta?
                     <button
-                        onClick={() => router.push('/login')}
+                        onClick={() => router.push('/auth/login')}
                         className="ml-2 text-lime-400 hover:underline"
                     >
                         Iniciar sesión

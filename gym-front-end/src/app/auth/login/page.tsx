@@ -42,9 +42,9 @@ export default function Login() {
     useEffect(() => {
         if (!isLoading && user) {
             if (user.rolId === 1) {
-                router.push("/admin");
+                router.push("/dashboard/admin");
             } else if (user.rolId === 2) {
-                router.push("/client");
+                router.push("/dashboard/client");
             }
         }
     }, [user, isLoading, router]);
@@ -88,7 +88,7 @@ export default function Login() {
                 <p className="text-center mt-8 text-sm text-gray-400">
                     ¿No tenés cuenta?
                     <button
-                        onClick={() => router.push('/register')}
+                        onClick={() => router.push('/auth/register')}
                         className="ml-2 text-lime-400 hover:underline"
                     >
                         Registrarse
