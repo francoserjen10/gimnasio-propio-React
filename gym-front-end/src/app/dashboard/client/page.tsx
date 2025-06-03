@@ -16,7 +16,7 @@ function HomeClient() {
             <button onClick={async () => {
                 setUser(null);
                 await logOut();
-                router.push("/login");
+                router.push("/auth/login");
             }}>
                 Cerrar sesion
             </button>

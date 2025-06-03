@@ -2,7 +2,7 @@
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { useRouter } from "next/navigation";
 import { registerService } from "@/services/auth/register-service";
-import { registrationSchema } from "../../utils/validation/registrarion-schema";
+import { registrationSchema } from "../../../utils/validation/registrarion-schema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -70,7 +70,7 @@ export default function Register() {
                 <p className="text-center mt-8 text-sm text-gray-400">
                     ¿Ya tenés cuenta?
                     <button
-                        onClick={() => router.push('/login')}
+                        onClick={() => router.push('/auth/login')}
                         className="ml-2 text-lime-400 hover:underline"
                     >
                         Iniciar sesión
