@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useEffect, useState } from "react";
 import { useUser } from "@/context/user-context";
+import Toast from "./toast";
 
 export default function Login() {
 
@@ -17,16 +18,19 @@ export default function Login() {
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         resolver: zodResolver(loginSchema),
     });
+    const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
     const onSubmit = async (data: z.infer<typeof loginSchema>) => {
         try {
             const response = await loginService(data.email, data.password);
             setUser(response.user);
-            alert('Inicio de sesion exitoso');
+            setToast({ message: 'Inicio de sesión exitoso 💪', type: 'success' });
             reset();
             setLoginError(null);
         } catch (error) {
-            console.error("Error al hacer la petición:", error);
+            const mensaje = error instanceof Error ? error.message : "Se ha producido un error";
+            setLoginError(mensaje);
+            setToast({ message: `Error: ${mensaje}`, type: 'error' });
             if (error instanceof Error) {
                 setLoginError(error.message);
             } else {
@@ -78,6 +82,8 @@ export default function Login() {
                         Ingresar
                     </button>
                 </form>
+
+                {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
 
                 <p className="text-center mt-8 text-sm text-gray-400">
                     ¿No tenés cuenta?
