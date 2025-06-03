@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useEffect, useState } from "react";
 import { useUser } from "@/context/user-context";
-import Toast from "./toast";
+import Toast from "../../../components/toast";
 
 export default function Login() {
 
