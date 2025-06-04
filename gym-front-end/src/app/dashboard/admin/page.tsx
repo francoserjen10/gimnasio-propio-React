@@ -7,11 +7,11 @@ import { useRouter } from "next/navigation";
 
 function HomeAdmin() {
     const router: AppRouterInstance = useRouter();
-    const { setUser } = useUser();
+    const { user, setUser } = useUser();
 
     return (
         <>
-            <h1>ADMINISTRADOR</h1>
+            <h1>Bienvenidos {user?.name} {user?.lastName}</h1>
 
             <button onClick={async () => {
                 setUser(null);
