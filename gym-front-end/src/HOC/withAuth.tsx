@@ -27,7 +27,7 @@ export function withAuth<T extends object>(
             if (!isLoading) {
                 if (!user) {
                     // Usuario no autenticado: redirigir al login
-                    router.push("/login");
+                    router.push("/auth/login");
                 } else if (user.rolId !== undefined && !allowedRoles.includes(user.rolId)) {
                     // Usuario autenticado pero sin rol autorizado: redirigir a página sin permiso
                     router.push("/unauthorized");
