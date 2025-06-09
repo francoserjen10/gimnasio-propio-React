@@ -1,6 +1,7 @@
 "use client";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { useRouter } from "next/navigation";
+import LogoutButton from "../logOutButton";
 
 export function SidebarAdmin() {
     const router: AppRouterInstance = useRouter();
@@ -17,7 +18,7 @@ export function SidebarAdmin() {
                 <div className="text-2xl font-bold px-6 py-4 border-b border-gray-700">
                     <h1>NO EXCUSES CLUB</h1>
                 </div>
-                <nav className="flex flex-col p-4 gap-2">
+                <nav className="flex flex-col p-4 gap-2 flex-grow">
                     {menuItems.map((item) => (
                         <button
                             key={item.id}
@@ -30,6 +31,9 @@ export function SidebarAdmin() {
                         </button>
                     ))}
                 </nav>
+                <div className="border-t border-gray-700">
+                    <LogoutButton />
+                </div>
             </aside>
         </>
     );
