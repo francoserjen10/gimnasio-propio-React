@@ -7,7 +7,7 @@ export function SidebarAdmin() {
     const router: AppRouterInstance = useRouter();
 
     const menuItems = [
-        { id: "clientes", label: "Clientes", path: "/dashboard/admin" },
+        { id: "clientes", label: "Clientes", path: "/dashboard/admin/users" },
         { id: "turnos", label: "Turnos", path: "/dashboard/admin" },
         { id: "reservas", label: "Reservas", path: "/dashboard/admin" },
     ];
