@@ -24,7 +24,7 @@ export default function Register() {
             await registerService(formattedDate.name, formattedDate.lastName, formattedDate.phoneNumber, formattedDate.birthDate, formattedDate.dni, formattedDate.email, formattedDate.password, formattedDate.emergencyContact, formattedDate.direction);
             alert(`Usuario ${data.name} registrado con éxito`);
             reset();
-            router.push('/login');
+            router.push('/auth/login');
         } catch (error) {
             console.error("Error al hacer la petición:", error);
         }
