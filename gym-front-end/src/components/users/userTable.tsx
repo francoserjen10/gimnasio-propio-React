@@ -2,6 +2,7 @@
 import { IUserResponse } from "@/interfaces/user";
 import { userListService } from "@/services/admin/userService";
 import { useEffect, useState } from "react";
+import styles from './scrollbar.module.css';
 
 export default function UserTableForAdmin() {
     const [users, setUsers] = useState<IUserResponse[]>([]);
@@ -28,43 +29,49 @@ export default function UserTableForAdmin() {
 
     return (
         <>
-            <div>
-                <h2>Listado de Usuarios</h2>
+            <div className="p-6 text-white max-w-full">
+                <h2 className="text-2xl font-bold mb-4">Listado de Usuarios</h2>
 
-                {loading && <p>Cargando usuarios...</p>}
-                {error && <p style={{ color: 'red' }}>{error}</p>}
+                {loading && <p className="text-gray-300">Cargando usuarios...</p>}
+                {error && <p className="text-red-500">{error}</p>}
 
                 {!loading && !error && users.length === 0 && (
-                    <p>No hay usuarios para mostrar</p>
+                    <p className="text-gray-400">No hay usuarios para mostrar</p>
                 )}
 
                 {!loading && users.length > 0 && (
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
-                                <th>Telefono</th>
-                                <th>Fecha de nacimiento</th>
-                                <th>DNI</th>
-                                <th>Email</th>
-                                <th>Rol</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {users.map((user) => (
-                                <tr key={user.usuario_id}>
-                                    <td>{user.name}</td>
-                                    <td>{user.lastName}</td>
-                                    <td>{user.phoneNumber}</td>
-                                    <td>{user.birthDate instanceof Date ? user.birthDate.toLocaleDateString() : String(user.birthDate)}</td>
-                                    <td>{user.dni}</td>
-                                    <td>{user.email}</td>
-                                    <td>{user.rolId}</td>
+                    <div className={`max-h-[70vh] rounded-lg shadow-md border border-gray-700 ${styles['scroll-container']}`}>
+                        <table className="min-w-full bg-gray-900 text-white">
+                            <thead className="bg-gray-700 text-left text-sm uppercase tracking-wider">
+                                <tr>
+                                    <th className="px-6 py-3">Nombre</th>
+                                    <th className="px-6 py-3">Apellido</th>
+                                    <th className="px-6 py-3">Teléfono</th>
+                                    <th className="px-6 py-3">Nacimiento</th>
+                                    <th className="px-6 py-3">DNI</th>
+                                    <th className="px-6 py-3">Email</th>
+                                    <th className="px-6 py-3">Rol</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody className="divide-y divide-gray-700">
+                                {users.map((user) => (
+                                    <tr key={user.usuario_id} className="hover:bg-gray-800">
+                                        <td className="px-6 py-4">{user.name}</td>
+                                        <td className="px-6 py-4">{user.lastName}</td>
+                                        <td className="px-6 py-4">{user.phoneNumber}</td>
+                                        <td className="px-6 py-4">
+                                            {user.birthDate instanceof Date
+                                                ? user.birthDate.toLocaleDateString()
+                                                : String(user.birthDate)}
+                                        </td>
+                                        <td className="px-6 py-4">{user.dni}</td>
+                                        <td className="px-6 py-4">{user.email}</td>
+                                        <td className="px-6 py-4">{user.rolId}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 )}
             </div>
         </>
