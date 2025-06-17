@@ -2,6 +2,7 @@
 import { IUserResponse } from "@/interfaces/user";
 import { userListService } from "@/services/admin/userService";
 import { useEffect, useState } from "react";
+import styles from './scrollbar.module.css';
 
 export default function UserTableForAdmin() {
     const [users, setUsers] = useState<IUserResponse[]>([]);
@@ -39,7 +40,7 @@ export default function UserTableForAdmin() {
                 )}
 
                 {!loading && users.length > 0 && (
-                    <div className="max-h-[70vh] overflow-y-auto overflow-x-auto rounded-lg shadow-md border border-gray-700">
+                    <div className={`max-h-[70vh] rounded-lg shadow-md border border-gray-700 ${styles['scroll-container']}`}>
                         <table className="min-w-full bg-gray-900 text-white">
                             <thead className="bg-gray-700 text-left text-sm uppercase tracking-wider">
                                 <tr>
