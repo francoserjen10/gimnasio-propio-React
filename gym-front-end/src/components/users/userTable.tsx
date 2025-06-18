@@ -40,9 +40,9 @@ export default function UserTableForAdmin() {
                 )}
 
                 {!loading && users.length > 0 && (
-                    <div className={`max-h-[70vh] rounded-lg shadow-md border border-gray-700 ${styles['scroll-container']}`}>
+                    <div className={`max-h-[72vh] rounded-lg shadow-md border border-gray-700 ${styles['scroll-container']}`}>
                         <table className="min-w-full bg-gray-900 text-white">
-                            <thead className="bg-gray-700 text-left text-sm uppercase tracking-wider">
+                            <thead className="bg-gray-700 text-left text-sm uppercase tracking-wider sticky top-0">
                                 <tr>
                                     <th className="px-6 py-3">Nombre</th>
                                     <th className="px-6 py-3">Apellido</th>
