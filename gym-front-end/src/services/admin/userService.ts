@@ -15,3 +15,17 @@ export const userListService = async () => {
         }
     }
 }
+
+export const deleteUserByIdService = async (userId: number | undefined) => {
+    try {
+        const response = await axiosInstance.delete(`/admin/${userId}`, { withCredentials: true });
+        return response.data;
+    } catch (error) {
+        if (isAxiosError(error)) {
+            console.error("Error al eliminar usuario:", error.response?.data || error.message);
+            throw new Error(error.response?.data?.message || "Error al eliminar el usuario.");
+        } else {
+            throw new Error("Error inesperado al eliminar el usuario.");
+        }
+    }
+}
